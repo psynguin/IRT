@@ -1,0 +1,15 @@
+---
+title: "Visualización IRT"
+---
+
+El siguiente proyecto es un material de apoyo que muestra cómo cada parámetro de un modelo IRT afecta la curva característica del ítem (ICC).
+
+**Se presentan 3 modelos IRT:**
+
+-   1PL (Rasch).
+
+-   2PL.
+
+-   3PL.
+
+Para acceder al material selecciona el modelo que quieres visualizar en la barra superior de la página.

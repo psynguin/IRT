@@ -1,0 +1,35 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Home"
+  site-url: "https://psynguin.github.io/IRT/"
+  repo-url: https://github.com/psynguin/IRT
+  navbar:
+    left:
+      - href: 1PL.qmd
+        text: 1PL
+      - href: 2PL.qmd
+        text: 2PL
+      - href: 3PL.qmd
+        text: 3PL
+
+author:
+  - name: Tom Baladrón J.
+    id: TB
+    email: psynguin@gmail.com
+    affiliation: Psynguin
+
+lang: es
+
+fig-align: center
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+
+
+

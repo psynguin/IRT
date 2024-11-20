@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Visualización IRT",
+    "section": "",
+    "text": "El siguiente proyecto es un material de apoyo que muestra cómo cada parámetro de un modelo IRT afecta la curva característica del ítem (ICC).\nSe presentan 3 modelos IRT:\n\n1PL (Rasch).\n2PL.\n3PL.\n\nPara acceder al material selecciona el modelo que quieres visualizar en la barra superior de la página."
+  },
+  {
+    "objectID": "3PL.html",
+    "href": "3PL.html",
+    "title": "IRT de 3 parámetros (3PL)",
+    "section": "",
+    "text": "import {slider} from \"@jashkenas/inputs\";\n\n\n\n\n\n\nviewof a = slider({\n    min: -2,\n    max: 2,\n    step: 0.1,\n    value: 1,\n    title: \"Discriminación (a)\"\n});\n\nviewof b = slider({\n    min: -2,\n    max: 2,\n    step: 0.1,\n    value: 0,\n    title: \"Dificultad (b)\"\n});\nviewof c = slider({\n    min: -1,\n    max: 1,\n    step: 0.1,\n    value: 0,\n    title: \"Adivinación (c)\"\n});\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmd`\n  ${tex.block`\n    P(y=1|\\theta_p;b_i,a_i,c_i) = ${c} + \\left( \\frac{1-${c}}{ 1 + e^{-(${a} (x - ${b}))}} \\right)\n  `}\n`\n\n\n\n\n\n\n\nx = Array.from({ length: (3 - (-3)) / 0.01 + 1 }, (_, i) =&gt; -3 + i * 0.01);\ny = x.map((x) =&gt; c + ((1-c)/(1 + Math.exp(-(a * (x - b))))));\n\n\n// Plot the data\nPlot.plot({\n  marks: [\n    Plot.ruleY([0]),\n    Plot.ruleX([0]),\n    Plot.line(\n      x.map((_, i) =&gt; ({ x: x[i], y: y[i] })),\n      { x: \"x\", y: \"y\", stroke: \"steelblue\" }\n    ),\n    // Add a bold dot directly at x = b, y = 0.5\n    Plot.dot([{ \n      x: b, \n      y: 0.5 + (c/2) \n    }], {\n      x: \"x\", \n      y: \"y\", \n      fill: \"red\", \n      r: 5  // Increase the radius to make it a bold dot\n    })\n  ],\n  x: {\n    label: \"theta\",\n    domain: [-3, 3],\n    grid: true\n  },\n  y: {\n    label: \"P()\",\n    domain: [0, 1],\n    grid: true\n  }\n})"
+  },
+  {
+    "objectID": "1PL.html",
+    "href": "1PL.html",
+    "title": "IRT de 1 parámetro (1PL)",
+    "section": "",
+    "text": "import {slider} from \"@jashkenas/inputs\";\n\n\n\n\n\n\n\nviewof b = slider({\n    min: -2,\n    max: 2,\n    step: 0.1,\n    value: 0,\n    title: \"Dificultad (b)\"\n});\n\n\n\n\n\n\n\nmd`\n  ${tex.block`\n    P(y=1|\\theta_p;b_i) = \\left( \\frac{1}{ 1 + e^{-(x - ${b})}} \\right)\n  `}\n`\n\n\n\n\n\n\n\nx = Array.from({ length: (3 - (-3)) / 0.01 + 1 }, (_, i) =&gt; -3 + i * 0.01);\ny = x.map((x) =&gt; 1/(1 + Math.exp(-(x - b))));\n\n\n// Plot the data\nPlot.plot({\n  marks: [\n    Plot.ruleY([0]),\n    Plot.ruleX([0]),\n    Plot.line(\n      x.map((_, i) =&gt; ({ x: x[i], y: y[i] })),\n      { x: \"x\", y: \"y\", stroke: \"steelblue\" }\n    ),\n    // Add a bold dot directly at x = b, y = 0.5\n    Plot.dot([{ \n      x: b, \n      y: 0.5 \n    }], {\n      x: \"x\", \n      y: \"y\", \n      fill: \"red\", \n      r: 5  // Increase the radius to make it a bold dot\n    })\n  ],\n  x: {\n    label: \"x-axis\",\n    domain: [-3, 3],\n    grid: true\n  },\n  y: {\n    label: \"y-axis\",\n    domain: [0, 1],\n    grid: true\n  }\n})"
+  },
+  {
+    "objectID": "2PL.html",
+    "href": "2PL.html",
+    "title": "IRT de 2 parámetros (2PL)",
+    "section": "",
+    "text": "import {slider} from \"@jashkenas/inputs\";\n\n\n\n\n\n\nviewof a = slider({\n    min: -3,\n    max: 3,\n    step: 0.1,\n    value: 1,\n    title: \"Discriminación (a)\"\n});\nviewof b = slider({\n    min: -2,\n    max: 2,\n    step: 0.1,\n    value: 0,\n    title: \"Dificultad (b)\"\n});\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmd`\n  ${tex.block`\n    P(y=1|\\theta_p;b_i,a_i) = \\left( \\frac{1}{ 1 + e^{-(${a} (x - ${b}))}} \\right)\n  `}\n`\n\n\n\n\n\n\n\nx = Array.from({ length: (3 - (-3)) / 0.01 + 1 }, (_, i) =&gt; -3 + i * 0.01);\ny = x.map((x) =&gt; 1/(1 + Math.exp(-(a * (x - b)))));\n\n// Plot the data\nPlot.plot({\n  marks: [\n    Plot.ruleY([0]),\n    Plot.ruleX([0]),\n    Plot.line(\n      x.map((_, i) =&gt; ({ x: x[i], y: y[i] })),\n      { x: \"x\", y: \"y\", stroke: \"steelblue\" }\n    ),\n    // Add a bold dot directly at x = b, y = 0.5\n    Plot.dot([{ \n      x: b, \n      y: 0.5 \n    }], {\n      x: \"x\", \n      y: \"y\", \n      fill: \"red\", \n      r: 5  // Increase the radius to make it a bold dot\n    })\n  ],\n  x: {\n    label: \"x-axis\",\n    domain: [-3, 3],\n    grid: true\n  },\n  y: {\n    label: \"y-axis\",\n    domain: [0, 1],\n    grid: true\n  }\n})"
+  }
+]

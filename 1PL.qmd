@@ -1,0 +1,73 @@
+---
+title: IRT de 1 parámetro (1PL)
+fig-align: center
+---
+```{ojs}
+//| echo: false
+
+import {slider} from "@jashkenas/inputs";
+```
+
+```{ojs}
+//| echo: false
+
+viewof b = slider({
+    min: -2,
+    max: 2,
+    step: 0.1,
+    value: 0,
+    title: "Dificultad (b)"
+});
+```
+
+```{ojs}
+//| echo: false
+
+md`
+  ${tex.block`
+    P(y=1|\theta_p;b_i) = \left( \frac{1}{ 1 + e^{-(x - ${b})}} \right)
+  `}
+`
+```
+
+
+
+```{ojs}
+//| echo: false
+
+x = Array.from({ length: (3 - (-3)) / 0.01 + 1 }, (_, i) => -3 + i * 0.01);
+y = x.map((x) => 1/(1 + Math.exp(-(x - b))));
+
+
+// Plot the data
+Plot.plot({
+  marks: [
+    Plot.ruleY([0]),
+    Plot.ruleX([0]),
+    Plot.line(
+      x.map((_, i) => ({ x: x[i], y: y[i] })),
+      { x: "x", y: "y", stroke: "steelblue" }
+    ),
+    // Add a bold dot directly at x = b, y = 0.5
+    Plot.dot([{ 
+      x: b, 
+      y: 0.5 
+    }], {
+      x: "x", 
+      y: "y", 
+      fill: "red", 
+      r: 5  // Increase the radius to make it a bold dot
+    })
+  ],
+  x: {
+    label: "x-axis",
+    domain: [-3, 3],
+    grid: true
+  },
+  y: {
+    label: "y-axis",
+    domain: [0, 1],
+    grid: true
+  }
+})
+```
