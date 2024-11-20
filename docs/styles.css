@@ -1,1 +1,9 @@
 /* css styles */
+.ms-auto {
+  margin: auto;
+}
+
+nav .nav-item:not(.compact) {
+  padding-top: 1px;
+  padding-right: 8rem;
+}
