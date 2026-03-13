@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://psynguin.github.io/IRT/GRM.html</loc>
-    <lastmod>2026-03-12T13:47:41.239Z</lastmod>
+    <loc>https://psynguin.github.io/IRT/index.html</loc>
+    <lastmod>2026-03-11T17:31:05.776Z</lastmod>
   </url>
   <url>
     <loc>https://psynguin.github.io/IRT/PCM.html</loc>
-    <lastmod>2026-03-11T17:33:34.665Z</lastmod>
+    <lastmod>2026-03-12T20:05:27.722Z</lastmod>
   </url>
   <url>
-    <loc>https://psynguin.github.io/IRT/2PL.html</loc>
+    <loc>https://psynguin.github.io/IRT/3PL.html</loc>
     <lastmod>2026-03-11T17:31:05.723Z</lastmod>
   </url>
   <url>
@@ -17,7 +17,11 @@
     <lastmod>2026-03-12T13:18:47.343Z</lastmod>
   </url>
   <url>
-    <loc>https://psynguin.github.io/IRT/3PL.html</loc>
+    <loc>https://psynguin.github.io/IRT/2PL.html</loc>
     <lastmod>2026-03-11T17:31:05.723Z</lastmod>
+  </url>
+  <url>
+    <loc>https://psynguin.github.io/IRT/GRM.html</loc>
+    <lastmod>2026-03-12T19:43:12.920Z</lastmod>
   </url>
 </urlset>

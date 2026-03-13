@@ -1,19 +1,23 @@
 project:
-#  type: website
+  type: website
   output-dir: docs
 
-#website:
-#  title: "Home"
-#  site-url: "https://psynguin.github.io/IRT/"
-#  repo-url: https://github.com/psynguin/IRT
-#  navbar:
-#    right:
-#      - href: 1PL.qmd
-#        text: 1PL
-#      - href: 2PL.qmd
-#        text: 2PL
-#      - href: 3PL.qmd
-#        text: 3PL
+website:
+ title: "Home"
+ site-url: "https://psynguin.github.io/IRT/"
+ repo-url: https://github.com/psynguin/IRT
+ navbar:
+   right:
+     - href: 1PL.qmd
+       text: 1PL
+     - href: 2PL.qmd
+       text: 2PL
+     - href: 3PL.qmd
+       text: 3PL
+     - href: PCM.qmd
+       text: PCM
+     - href: GRM.qmd
+       text: GRM
 
 author:
   - name: Tom Baladrón J.
