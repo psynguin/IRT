@@ -2,6 +2,7 @@
 title: IRT de 1 parámetro (1PL)
 fig-align: center
 ---
+
 ```{ojs}
 //| echo: false
 
@@ -17,7 +18,7 @@ viewof b = slider({
     step: 0.1,
     value: 0,
     title: "Dificultad (b)"
-});
+});d3 = require("d3@7")
 ```
 
 ```{ojs}
@@ -29,8 +30,6 @@ md`
   `}
 `
 ```
-
-
 
 ```{ojs}
 //| echo: false
@@ -70,4 +69,5 @@ Plot.plot({
     grid: true
   }
 })
+
 ```

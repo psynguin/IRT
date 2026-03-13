@@ -1,0 +1,114 @@
+---
+title: GRM
+format:
+  html:
+    theme: default
+fig-align: center
+---
+```{ojs}
+//| echo: false
+
+import {slider} from "@jashkenas/inputs";
+```
+
+:::: {layout="[ 50, 50 ]"}
+
+::: {#first-column}
+```{ojs}
+//| echo: false
+
+viewof a = slider({min: 0, max: 2, step: 0.1, value: 1.5, title: "Discriminación (a)"});
+
+```
+:::
+
+::: {#second-column}
+```{ojs}
+//| echo: false
+
+viewof b1 = slider({min: -4, max: 4, step: 0.1, value: -1.5, title: "Threshold 1 (b1)"});
+viewof b2 = slider({min: -4, max: 4, step: 0.1, value: 0, title: "Threshold 2 (b2)"});
+viewof b3 = slider({min: -4, max: 4, step: 0.1, value: 1.5, title: "Threshold 3 (b3)"});
+
+```
+:::
+
+::::
+
+:::: {layout="[ 50, 50 ]"}
+
+::: {#first-column}
+```{ojs}
+//| echo: false
+
+md`
+  ${tex.block`
+    \begin{aligned}
+    P(Y = 0|\theta) &= 1 - \frac{e^{${a}(\theta - ${b1})}}{1 + e^{${a}(\theta - ${b1})}} \\\\
+    P(Y = 1|\theta) &= \frac{e^{${a}(\theta - ${b1})}}{1 + e^{${a}(\theta - ${b1})}} - \frac{e^{${a}(\theta - ${b2})}}{1 + e^{${a}(\theta - ${b2})}}
+    \end{aligned}
+  `}
+`
+
+```
+:::
+
+::: {#second-column}
+```{ojs}
+//| echo: false
+
+md`
+  ${tex.block`
+    \begin{aligned}
+    P(Y = 2|\theta) &= \frac{e^{${a}(\theta - ${b2})}}{1 + e^{${a}(\theta - ${b2})}} - \frac{e^{${a}(\theta - ${b3})}}{1 + e^{${a}(\theta - ${b3})}}\\\\
+    P(Y = 3|\theta) &= \frac{e^{${a}(\theta - ${b3})}}{1 + e^{${a}(\theta - ${b3})}} - 0
+    \end{aligned}
+  `}
+`
+
+```
+:::
+
+::::
+
+```{ojs}
+//| echo: false
+
+x = Array.from({ length: (6 - (-6)) / 0.01 + 1 }, (_, i) => -6 + i * 0.01);
+
+// Helper for logistic curves
+p_star = (theta, b) => 1 / (1 + Math.exp(-a * (theta - b)));
+
+// Calculate probabilities for each category
+y0 = x.map(t => 1 - p_star(t, b1));
+y1 = x.map(t => p_star(t, b1) - p_star(t, b2));
+y2 = x.map(t => p_star(t, b2) - p_star(t, b3));
+y3 = x.map(t => p_star(t, b3));
+
+// Plot the data
+Plot.plot({
+  marks: [
+    Plot.ruleY([0]),
+    Plot.ruleX([0]),
+    // Category 0
+    Plot.line(x.map((_, i) => ({ x: x[i], y: y0[i] })), { x: "x", y: "y", stroke: "#e41a1c" }),
+    // Category 1
+    Plot.line(x.map((_, i) => ({ x: x[i], y: y1[i] })), { x: "x", y: "y", stroke: "#377eb8" }),
+    // Category 2
+    Plot.line(x.map((_, i) => ({ x: x[i], y: y2[i] })), { x: "x", y: "y", stroke: "#4daf4a" }),
+    // Category 3
+    Plot.line(x.map((_, i) => ({ x: x[i], y: y3[i] })), { x: "x", y: "y", stroke: "#984ea3" }),
+    
+    // Threshold markers at y = 0.5
+    Plot.dot([
+      {x: b1, y: 0.5},
+      {x: b2, y: 0.5},
+      {x: b3, y: 0.5}
+    ], { x: "x", y: "y", fill: "black", r: 4 })
+  ],
+  x: { label: "Capacidad (θ)", domain: [-6, 6], grid: true },
+  y: { label: "Probabilidad", domain: [0, 1], grid: true }
+})
+
+```
+
